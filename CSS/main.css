@@ -32,3 +32,38 @@ h3 {
 p {
   margin-top: 0;
 }
+
+/* buttons */
+.btn {
+  cursor: pointer;
+  display: inline-block;
+  padding: 0.5em 1.25em;
+  font-size: 1rem;
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.75em;
+  text-decoration: none;
+}
+
+.btn--primary {
+  background-color: var(--clr-primary);
+  color: var(--clr-light);
+}
+
+.btn--primary:hover {
+  background-color: var(--clr-dark);
+}
+
+.btn--outline {
+  /* border: 3px solid var(--clr-primary); */
+  outline: 3px solid var(--clr-primary);
+  outline-offset: -3px;
+  /* same amount outline as is border to push it in. */
+  color: var(--clr-primary);
+}
+.btn--outline:hover {
+  background: var(--clr-dark);
+  outline-color: var(--clr-dark);
+  color: var(--clr-light);
+}
