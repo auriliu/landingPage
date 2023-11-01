@@ -12,7 +12,8 @@
   --fw-normal: 400;
   --fw-bold: 700;
   --fw-black: 900;
-  --grid: 1fr;
+  --grid: minmax(1em, 10%) minmax(10rem, 22ch) minmax(10rem, 23ch)
+    minmax(1em, 3fr) max-content;
 }
 
 body {
@@ -80,7 +81,8 @@ header {
 .nav__list {
   display: flex;
   justify-content: space-between;
-  margin: 0;
+  max-width: 35rem;
+  margin: 0 auto;
   padding: 1em;
   list-style: none;
   font-size: 0.875rem;
@@ -88,10 +90,17 @@ header {
   font-weight: var(--fw-bold);
   letter-spacing: 1px;
 }
+.nav__item {
+  margin-left: 1em;
+  margin-right: 1em;
+}
 
 .nav__link {
   text-decoration: none;
   color: inherit;
+}
+.nav__link:hover {
+  color: var(--clr-primary);
 }
 
 .weather {
@@ -99,6 +108,10 @@ header {
   grid-template-columns: min-content 1fr;
   background: var(--clr-dark);
   color: var(--clr-light);
+  width: max-content;
+  margin: 0.5em auto -1em;
+  position: relative;
+  z-index: 1;
 }
 
 .weather__icon {
@@ -121,10 +134,10 @@ header {
 }
 .weather__info span {
   color: var(--clr-light);
-  margin-left: auto;
   margin-right: 0.75rem;
   font-size: 1rem;
   text-transform: none;
+  margin-left: 1em;
 }
 
 .weather__info:first-of-type {
@@ -146,4 +159,73 @@ header {
 
 .main {
   padding: 3em 1em 10em;
+}
+/* new updates. fk!! is he messy! overcomplicating things AF. */
+
+@media (min-width: 500px) {
+  .main {
+    display: grid;
+    grid-template-columns: var(--grid);
+    justify-items: start;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .main > * {
+    grid-column: 2/4;
+  }
+  .main--ski {
+    background-position: left bottom;
+  }
+  /* margin left on the 2nd, 3rd, 4th btn, all btns that come AFTER the 1st one. */
+
+  .btn + .btn {
+    margin-left: 1em;
+  }
+}
+
+@media (min-width: 1200px) {
+  .main--ski {
+    background-position: center right;
+  }
+}
+
+.main--ski {
+  background-image: url(../images/background.png);
+  background-size: cover;
+}
+
+.main__title {
+  line-height: 1;
+  font-weight: var(--fw-black);
+  font-size: 3rem;
+  margin-bottom: 0.75em;
+}
+.main__intro {
+  margin-bottom: 4em;
+}
+
+@media (min-width: 1000px) {
+  header {
+    display: grid;
+    grid-template-columns: var(--grid);
+    align-items: center;
+  }
+  .logo,
+  .nav,
+  .weather {
+    grid-row: 1;
+    margin: 0;
+  }
+  .weather {
+    grid-column: -2/-1;
+    justify-self: end;
+  }
+  .logo {
+    grid-column: 2;
+  }
+  .nav {
+    grid-column: 2/5;
+    justify-self: end;
+    margin-right: 3em;
+  }
 }
